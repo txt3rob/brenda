@@ -1,6 +1,10 @@
 Brenda -- Blender render farm software for Amazon Web Services.
 ===============================================================
 
+```````
+NOTE THIS FORK IS FOR GPU AND INSTRUCTIONS ARE NOT IN FULL YET
+```````
+
 Brenda uses Amazon EC2, S3, and SQS to implement a distributed
 render farm using low-cost EC2 spot instances.  Using Brenda,
 you can accelerate complex render tasks by distributing the
@@ -68,7 +72,7 @@ Brenda to interact with AWS.
 
 Next, download and install Brenda on the client machine.
 
-    $ git clone http://github.com/jamesyonan/brenda.git
+    $ git clone http://github.com/txt3rob/brenda.git
     $ cd brenda
     $ python setup.py install
 
@@ -176,7 +180,7 @@ to replace PROJECT_BUCKET and FRAME_BUCKET with the names you
 chose above.
 
 ```
-INSTANCE_TYPE=m3.xlarge
+INSTANCE_TYPE=g2.2xlarge
 BLENDER_PROJECT=s3://PROJECT_BUCKET/myproject.tar.gz
 WORK_QUEUE=sqs://FRAME_BUCKET
 RENDER_OUTPUT=s3://FRAME_BUCKET
@@ -328,12 +332,12 @@ For more info on EC2 instance types see:
 
   http://aws.amazon.com/ec2/instance-types/
 
-Continuing with the tutorial, let's bid on 4 c1.xlarge instances
+Continuing with the tutorial, let's bid on 4 g2.2xlarge instances
 at US$0.07 per hour.  Note that when you run the following command,
 you are agreeing to be charged US$0.28 per hour total to rent 4 VMs
 (i.e. US$0.07 x 4 instances).
 
-    $ brenda-run -P -i c1.xlarge -N 4 -p 0.07 spot
+    $ brenda-run -P -i g2.2xlarge -N 4 -p 0.07 spot
 
 Note that we used the -P flag to create our spot instance requests.
 This flag tells AWS to make our spot requests "persistent", meaning
@@ -352,7 +356,7 @@ instances might not be available for a resonable cost.  In this case,
 it is possible to use on-demand instances instead (Note however that
 on-demand instance are considerably more expensive than spot instances).
 
-    $ brenda-run -i c1.xlarge -N 4 demand
+    $ brenda-run -i g2.2xlarge -N 4 demand
 
 To see the current status of your instances and spot requests:
 
@@ -830,7 +834,7 @@ $ pip install -U s3cmd
 Next, download and install Brenda:
 
 ```
-$ git clone http://github.com/jamesyonan/brenda.git
+$ git clone http://github.com/txt3rob/brenda.git
 $ cd brenda
 $ python setup.py install
 ```
