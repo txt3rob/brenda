@@ -1,0 +1,1 @@
+blender -b *.blend -F AVI_JPEG -o $OUTDIR/frame_###### -P cuda_setup.py -s $START -e $END -j $STEP -t 0 -a
